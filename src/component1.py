@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import requests
-import db2actions
-import db2connection
+import db2act
+import db2connect
 import ibm_db
 import validator
 from exceptions import EnvInvException, PolicyInvException
@@ -17,7 +17,7 @@ def getComp1Details():
         param2=request.args["param2"]
         authCheck= authenticate(request.headers)
         if authCheck:
-          connect= db2Connection.getConnection(app.config, subsystem)
+          connect= db2connect.getConnection(app.config, subsystem)
           result= db2act.getDetails(conn, databaseDetails)
           return jsonify(results), 200
         else:
